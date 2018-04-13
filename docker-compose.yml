@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        ports:
+            - "8080:80"
+        networks:
+            - frontend
+        volumes:
+            - ./www:/var/www/
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./nginx/logs:/var/log/nginx/
+        depends_on:
+            - app
+    app: 
+        build: ./php
+        container_name: app
+        networks:
+            - backend
+            - frontend
+        volumes:
+            - ./www:/var/www/
+        depends_on:
+            - db
+    db:
+        image: postgres
+        #restart: always
+        ports:
+            - 5432
+        networks:
+            - backend
+        environment:
+            - POSTGRES_USER=urbem
+            - POSTGRES_PASSWORD=urbem123
+            - POSTGRES_DATABASE=urbem
+        volumes:
+            - ./postgresql/data:/var/lib/postgresql
+networks:
+    backend:
+    frontend:
