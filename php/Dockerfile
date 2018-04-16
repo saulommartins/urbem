@@ -14,8 +14,10 @@ docker-php-ext-install pdo \
     pdo_pgsql \
     gd \
     mbstring \
-    mcrypt && \
+    mcrypt \
+    zip && \
 curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-apt-get -y install vim
+apt-get -y install vim && \
+apt-get -y install git
 
 WORKDIR /var/www
