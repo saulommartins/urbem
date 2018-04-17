@@ -27,3 +27,7 @@ Route::get('/redirect', function () {
 
     return redirect('http://your-app.com/oauth/authorize?'.$query);
 });
+
+Route::middleware('auth:api')->post('/create-server', function () {
+	return response('user authenticate', 200);
+});
