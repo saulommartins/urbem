@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\User;
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;
 
@@ -21,5 +23,15 @@ trait CreatesApplication
         Hash::driver('bcrypt')->setRounds(4);
 
         return $app;
+    }
+    public function testServerCreation()
+    {
+        Passport::actingAs(
+            factory(User::class)->create(),
+            ['create-servers']
+        );
+
+        $response = $this->post('/api/create-server');
+        $response->assertStatus(200);
     }
 }
