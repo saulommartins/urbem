@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Mockery\Exception;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,39 +14,40 @@ class CampoTcePrNumericoTest extends TestCase
 	 * @var \App\Services\CampoTcePrNumericoService;
 	 */
 	private $service;
-//
-//	function setUp()
-//	{
-//		parent::setUp();
-//		$this->service = \Illuminate\Support\Facades\App::make(\App\Services\CampoTcePrNumericoService::class);
-//		$this->service->setNome("Tipo de Série Documento Fiscal");
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoObrigatorio()
-//	{
-//		$this->service->setObritarorio();
-//		$this->service->setValor(null);
-//		$this->getConteudo();
-//		$this->expectException("Tipo de Série Documento Fiscal é obrigatório!");
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoObrigatorioParcialNok()
-//	{
-//		$this->service->setObrigatorio(false);
-//		$this->service->setFormato("099");
-//		$this->service->setValor(5);
-//		$this->expectException("Tipo de Série Documento Fiscal é obrigatório!");
-//	}
+
+	function setUp()
+	{
+		parent::setUp();
+		$this->service = \Illuminate\Support\Facades\App::make(\App\Services\CampoTcePrNumericoService::class);
+		$this->service->setNome("Tipo de Série Documento Fiscal");
+	}
+
+	/**
+	 * A basic test on CampoTcePrNumerico.
+	 *
+	 * @return void
+	 */
+	public function testCampoObrigatorio()
+	{
+		$this->service->setObrigatorio(true);
+		$this->service->setValor("");
+        $this->expectException(Exception::class);
+        $this->assertTrue($this->service->getObrigatorio());
+        $this->service->getConteudo();
+	}
+
+	/**
+	 * A basic test on CampoTcePrNumerico.
+	 *
+	 * @return void
+	 */
+	public function testCampoObrigatorioParcialNok()
+	{
+		$this->service->setObrigatorio(false);
+		$this->service->setFormato("099");
+		$this->service->setValor(5);
+		$this->assertTrue($this->service->getConteudo() === 05);
+	}
 //
 //	/**
 //	 * A basic test on CampoTcePrNumerico.
@@ -108,7 +110,7 @@ class CampoTcePrNumericoTest extends TestCase
 //		$this->service->setValor("ABC");
 //		$this->expectException("Tipo de Série Documento Fiscal é inválido!");
 //	}
-
-
+//
+//
 
 }
