@@ -46,7 +46,7 @@ class CampoTcePrNumericoTest extends TestCase
 		$this->service->setObrigatorio(false);
 		$this->service->setFormato("099");
 		$this->service->setValor(5);
-		$this->assertTrue($this->service->getConteudo() === 05);
+		$this->assertSame('05', $this->service->getConteudo(),"string");
 	}
 //
 //	/**

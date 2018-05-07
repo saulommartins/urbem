@@ -32,6 +32,11 @@ class CampoService {
 	private $conteudo;
 
 	/**
+	 * @var string
+	 */
+	private $formato;
+
+	/**
 	 * @return string
 	 */
 	public function getNome(): string {
@@ -98,8 +103,24 @@ class CampoService {
 	/**
 	 * @param string $conteudo
 	 */
-	private function setConteudo(string $conteudo) {
+	protected function setConteudo(string $conteudo) {
 		$this->conteudo = $conteudo;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getFormato()
+	{
+		return $this->formato;
+	}
+
+	/**
+	 * @param string $formato
+	 */
+	public function setFormato($formato)
+	{
+		$this->formato = $formato;
 	}
 
 	public function preparaConteudo() {
