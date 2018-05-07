@@ -12,7 +12,7 @@ class CampoTcePrNumericoService extends \App\Services\CampoService
 		if ($conteudo == '') {
 			throw new Exception('Campo ' . $this->getNome() . ' é obrigatório!');
 		}
-		$qtdeZeroEsquerda = substr_count($this->getFormato(), '0') + strlen($conteudo);
+		$qtdeZeroEsquerda = strlen($this->getFormato());
 		$conteudo = str_pad( $conteudo, $qtdeZeroEsquerda, "0", STR_PAD_LEFT);
 		$inicioConteudo = (strlen($conteudo) > strlen($this->getFormato()) ?
 			strlen($conteudo) - strlen($this->getFormato()) : 1);

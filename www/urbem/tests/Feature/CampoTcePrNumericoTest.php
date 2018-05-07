@@ -46,71 +46,50 @@ class CampoTcePrNumericoTest extends TestCase
 		$this->service->setObrigatorio(false);
 		$this->service->setFormato("099");
 		$this->service->setValor(5);
-		$this->assertSame('05', $this->service->getConteudo(),"string");
+		$this->assertSame('005', $this->service->getConteudo(),"string");
 	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoParcialOk()
-//	{
-//		$this->service->setObrigatorio(true);
-//		$this->service->setFormato("099");
-//		$this->service->setValor(55);
-//		$this->assertTrue($this->service->getConteudo() == 55);
-//	}
-//
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoMoedaZero()
-//	{
-//		$this->service->setObrigatorio(true);
-//		$this->service->setFormato("9.99");
-//		$this->service->setValor(0);
-//		$this->assertTrue($this->service->getConteudo() == 0.00);
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoMoedaMaiorZero()
-//	{
-//		$this->service->setFormato("9.99");
-//		$this->service->setValor(10);
-//		$this->assertTrue($this->service->getConteudo() == 10.00);
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoOPercentual()
-//	{
-//		$this->service->setFormato("9.999");
-//		$this->service->setValor(10);
-//		$this->assertTrue($this->service->getConteudo() == 10.000);
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrNumerico.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoNumericoNok()
-//	{
-//		$this->service->setValor("ABC");
-//		$this->expectException("Tipo de Série Documento Fiscal é inválido!");
-//	}
-//
-//
+
+	/**
+	 * A basic test on CampoTcePrNumerico.
+	 *
+	 * @return void
+	 */
+	public function testCampoParcialOk()
+	{
+		$this->service->setObrigatorio(true);
+		$this->service->setFormato("099");
+		$this->service->setValor(55);
+echo "this->service->getConteudo() = ".$this->service->getConteudo();
+		$this->assertSame('055', $this->service->getConteudo(),"string");
+	}
+
+
+	/**
+	 * A basic test on CampoTcePrNumerico.
+	 *
+	 * @return void
+	 */
+	public function testCampoApenasZero()
+	{
+		$this->service->setObrigatorio(true);
+		$this->service->setFormato("999");
+		$this->service->setValor(0);
+		$this->assertSame('000', $this->service->getConteudo(),"string");
+	}
+
+
+	/**
+	 * A basic test on CampoTcePrNumerico.
+	 *
+	 * @return void
+	 */
+	public function testCampoNumericoNok()
+	{
+		$this->service->setValor("ABC");
+		$this->expectException(Exception::class);
+		$this->service->getConteudo();
+	}
+
+
 
 }
