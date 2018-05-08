@@ -13,38 +13,38 @@ class CampoTcePrDataTest extends TestCase
 	 */
 	private $service;
 
-//	function setUp()
-//	{
-//		parent::setUp();
-//		$this->service = \Illuminate\Support\Facades\App::make
-//		(\App\Services\CampoTcePrDataService::class);
-//		$this->service->setNome("Data da Operação");
-//	}
-//
-//	/**
-//	 * A basic test on CampoTcePrData.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoObrigatorio()
-//	{
-//		$this->service->setObritarorio(true);
-//		$this->service->setValor(null);
-//		$this->getConteudo();
-//		$this->expectException("Data da Operação é obrigatório!");
-//	}
-//
-//
-//	/**
-//	 * A basic test on CampoTcePrData.
-//	 *
-//	 * @return void
-//	 */
-//	public function testCampoObrigatorioParcialNok()
-//	{
-//		$this->service->setObrigatorio(false);
-//		$this->service->setFormato("AAAA-MM-DD");
-//		$this->service->setValor("5/10/2017");
-//		$this->assertTrue($this->service->getConteudo() == "2017-10-05");
-//	}
+	function setUp()
+	{
+		parent::setUp();
+		$this->service = \Illuminate\Support\Facades\App::make
+		(\App\Services\CampoTcePrDataService::class);
+		$this->service->setNome("Data da Operação");
+	}
+
+	/**
+	 * A basic test on CampoTcePrData.
+	 *
+	 * @return void
+	 */
+	public function testCampoObrigatorio()
+	{
+		$this->service->setObrigatorio(true);
+		$this->expectException(\TypeError::class);
+		$this->service->setValor(null);
+		$this->service->getConteudo();
+	}
+
+
+	/**
+	 * A basic test on CampoTcePrData.
+	 *
+	 * @return void
+	 */
+	public function testCampoObrigatorioParcialNok()
+	{
+		$this->service->setObrigatorio(false);
+		$this->service->setFormato("AAAA-MM-DD");
+		$this->service->setData(5,10,2017);
+		$this->assertEquals($this->service->getConteudo(),"2017-10-05");
+	}
 }
