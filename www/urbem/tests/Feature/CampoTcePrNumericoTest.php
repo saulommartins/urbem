@@ -59,7 +59,6 @@ class CampoTcePrNumericoTest extends TestCase
 		$this->service->setObrigatorio(true);
 		$this->service->setFormato("099");
 		$this->service->setValor(55);
-echo "this->service->getConteudo() = ".$this->service->getConteudo();
 		$this->assertSame('055', $this->service->getConteudo(),"string");
 	}
 
