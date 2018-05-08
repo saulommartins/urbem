@@ -30,7 +30,7 @@ class CampoTest extends TestCase
     public function testCampoObrigatorio()
     {
 	    $this->service->setObrigatorio(true);
-	    $this->service->setValor('');
+	    $this->service->setValor(0);
         $this->expectException(Exception::class);
 	    $this->assertTrue($this->service->getObrigatorio());
 	    $this->service->getConteudo();

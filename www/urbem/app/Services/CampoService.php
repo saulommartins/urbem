@@ -51,9 +51,9 @@ class CampoService {
 	}
 
 	/**
-	 * @return string
+	 * @return bool
 	 */
-	public function getObrigatorio() {
+	public function getObrigatorio() : bool {
 		return $this->obrigatorio;
 	}
 
@@ -110,7 +110,7 @@ class CampoService {
 	/**
 	 * @return string
 	 */
-	public function getFormato()
+	public function getFormato() : string
 	{
 		return $this->formato;
 	}
@@ -118,14 +118,14 @@ class CampoService {
 	/**
 	 * @param string $formato
 	 */
-	public function setFormato($formato)
+	public function setFormato(string $formato)
 	{
 		$this->formato = $formato;
 	}
 
-	public function preparaConteudo() {
+	public function preparaConteudo() : void {
 		$conteudo = $this->getValor();
-		if ($conteudo == '') {
+		if (empty($conteudo)) {
 			throw new Exception('Campo ' . $this->getNome() . ' é obrigatório!');
 		}
 		//TODO - manipulação do conteudo conforme tamanho e formato

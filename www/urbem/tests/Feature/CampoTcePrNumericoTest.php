@@ -30,8 +30,8 @@ class CampoTcePrNumericoTest extends TestCase
 	public function testCampoObrigatorio()
 	{
 		$this->service->setObrigatorio(true);
-		$this->service->setValor("");
-        $this->expectException(Exception::class);
+		$this->expectException(\TypeError::class);
+		$this->service->setValor(null);
         $this->assertTrue($this->service->getObrigatorio());
         $this->service->getConteudo();
 	}
@@ -73,23 +73,7 @@ echo "this->service->getConteudo() = ".$this->service->getConteudo();
 	{
 		$this->service->setObrigatorio(true);
 		$this->service->setFormato("999");
-		$this->service->setValor(0);
+		$this->service->setValor("0");
 		$this->assertSame('000', $this->service->getConteudo(),"string");
 	}
-
-
-	/**
-	 * A basic test on CampoTcePrNumerico.
-	 *
-	 * @return void
-	 */
-	public function testCampoNumericoNok()
-	{
-		$this->service->setValor("ABC");
-		$this->expectException(Exception::class);
-		$this->service->getConteudo();
-	}
-
-
-
 }
