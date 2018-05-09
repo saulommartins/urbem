@@ -34,7 +34,6 @@ class CampoTcePrDataTest extends TestCase
 		$this->service->getConteudo();
 	}
 
-
 	/**
 	 * A basic test on CampoTcePrData.
 	 *
@@ -46,5 +45,18 @@ class CampoTcePrDataTest extends TestCase
 		$this->service->setFormato("AAAA-MM-DD");
 		$this->service->setData(5,10,2017);
 		$this->assertEquals($this->service->getConteudo(),"2017-10-05");
+	}
+
+	/**
+	 * A basic test on CampoTcePrData.
+	 *
+	 * @return void
+	 */
+	public function testCampoDataFormato()
+	{
+		$this->service->setObrigatorio(false);
+		$this->service->setFormato("DD-MM-AAAA");
+		$this->service->setData(5,10,2017);
+		$this->assertEquals($this->service->getConteudo(),"05-10-2017");
 	}
 }
