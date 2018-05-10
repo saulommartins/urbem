@@ -54,7 +54,7 @@ class CampoTest extends TestCase
 	public function testSetTamanho()
 	{
 		$this->service->setTamanho([5]);
-		$this->service->setValor("12345");
+		$this->service->setValor("123456");
 		$this->assertTrue(strlen($this->service->getConteudo()) == $this->service->getTamanho()[0]);
 	}
 }

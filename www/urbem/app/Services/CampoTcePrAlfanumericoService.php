@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Services;
 
+use App\Services\CampoService;
 
 /**
  * Class CampoTcePrAlfanumericoService
+ *
  * @package App\Services
  */
-class CampoTcePrAlfanumericoService extends \App\Services\CampoService
-{
+class CampoTcePrAlfanumericoService extends CampoService {
 
 }
