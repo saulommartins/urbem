@@ -129,6 +129,7 @@ class CampoService {
 			throw new Exception('Campo ' . $this->getNome() . ' é obrigatório!');
 		}
 		//TODO - manipulação do conteudo conforme tamanho e formato
+        $conteudo = mb_substr($conteudo, 0, $this->getTamanho()[0] ?? strlen($conteudo));
 		$this->setConteudo($conteudo);
 	}
 
