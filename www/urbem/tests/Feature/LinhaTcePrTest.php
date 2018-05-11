@@ -40,10 +40,10 @@ class LinhaTcePrTest extends TestCase {
 		$colunaTexto = new CampoTcePrAlfanumericoService();
 		$colunaTexto->setObrigatorio(true);
 		$colunaTexto->setFormato("Asadkjh ckjha oieurlkjcg");
-		$colunaTexto->setTamanho(15);
+		$colunaTexto->setTamanho([15]);
 		$colunaTexto->setValor(10);
-		$this->service->addColuna($colunaNumero);
-		$this->service->addColuna($colunaTexto);
+		$this->service->addCampo($colunaNumero);
+		$this->service->addCampo($colunaTexto);
 		$this->assertSame('010', $this->service->getConteudo(),"string");
 	}
 
