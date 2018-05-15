@@ -39,12 +39,11 @@ class LinhaTcePrTest extends TestCase {
 
 		$colunaTexto = new CampoTcePrAlfanumericoService();
 		$colunaTexto->setObrigatorio(true);
-		$colunaTexto->setFormato("Asadkjh ckjha oieurlkjcg");
 		$colunaTexto->setTamanho([15]);
-		$colunaTexto->setValor(10);
+		$colunaTexto->setValor("Asadkjh ckjha oieurlkjcg");
 		$this->service->addCampo($colunaNumero);
 		$this->service->addCampo($colunaTexto);
-		$this->assertSame('010', $this->service->getConteudo(),"string");
+		$this->assertSame('010;Asadkjh ckjha o;', $this->service->getConteudo(),"string");
 	}
 
 }

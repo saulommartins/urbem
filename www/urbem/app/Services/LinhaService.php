@@ -38,6 +38,10 @@ class LinhaService
     }
 
     public function getConteudo () {
-        return '';
+        $conteudo = "";
+        foreach ($this->getCampos() as $campo) {
+            $conteudo.=$campo->getConteudo().";";
+        }
+        return $conteudo;
     }
 }
